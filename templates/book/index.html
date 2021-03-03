@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'book/base.html' %}
 {% load static %}
 
 {% block content %}
@@ -25,10 +25,9 @@
     }
 </style>
 <div class="box">
-    <image class="img" src="{% static 'images/books.jpg' %}"></image>
-    <h1 class="recommend">本</h1>
+    <img class="img" src="{% static 'book/books.jpg' %}"></img>
+    <h1 class="recommend">おすすめの本を紹介しよう</h1>
 </div>
-<h3>おすすめされた本がここに集まります</h3>
 
 <table class="table table-bordered table-striped">
     <thead class="thead-dark">
