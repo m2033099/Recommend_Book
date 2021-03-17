@@ -1,8 +1,13 @@
-from django.http import Http404, HttpResponseRedirect, HttpResponse
+from django.http import Http404, HttpResponseRedirect
 from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.core.paginator import Paginator
-from django.shortcuts import redirect
+
+# データをJSON型に変換する
+from django.core import serializers
+from django.shortcuts import get_object_or_404
+from django.http import JsonResponse
+
 from django.views import generic
 
 from .models import Book
@@ -60,7 +65,11 @@ def like(request, book_id):
     book.like += 1
     book.save()
 
-    return HttpResponse(book.like)
+    book = get_object_or_404(Book, id=book_id)
+
+    #book_like = serializers.serialize("json", book.like)
+
+    return JsonResponse({"book_like": book.like})
 
 
 class Book_Add(generic.edit.CreateView):
